@@ -1,0 +1,68 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Send Money" />
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Amount Input -->
+            <Label text="Amount to Send" class="text-lg font-semibold mb-2" />
+            <GridLayout columns="auto, *, auto" class="bg-white p-4 rounded-lg mb-4">
+                <TextField col="0" 
+                          text="{{ amount }}" 
+                          keyboardType="number" 
+                          class="text-xl" />
+                <DropDown col="2" 
+                         items="{{ currencies }}" 
+                         selectedIndex="{{ selectedCurrencyIndex }}" 
+                         class="ml-2" />
+            </GridLayout>
+
+            <!-- Recipient Details -->
+            <Label text="Recipient Details" class="text-lg font-semibold mb-2" />
+            <StackLayout class="bg-white p-4 rounded-lg mb-4">
+                <TextField hint="Phone Number or Email" 
+                          text="{{ recipientId }}"
+                          class="mb-2" />
+                <DropDown items="{{ countries }}"
+                         selectedIndex="{{ selectedCountryIndex }}"
+                         class="mb-2" />
+                <TextField hint="Description (Optional)"
+                          text="{{ description }}"
+                          class="mb-2" />
+            </StackLayout>
+
+            <!-- Provider Selection -->
+            <Label text="Select Provider" class="text-lg font-semibold mb-2" />
+            <ListView items="{{ availableProviders }}" class="bg-white rounded-lg mb-4">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto" class="p-4">
+                        <Image src="{{ logo }}" width="40" height="40" col="0" />
+                        <Label text="{{ name }}" col="1" class="ml-2" />
+                        <Label text="→" col="2" class="text-blue-500" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <!-- Transfer Summary -->
+            <StackLayout class="bg-white p-4 rounded-lg mb-4">
+                <GridLayout columns="*, auto" class="mb-2">
+                    <Label text="Exchange Rate" col="0" />
+                    <Label text="{{ exchangeRateDisplay }}" col="1" />
+                </GridLayout>
+                <GridLayout columns="*, auto" class="mb-2">
+                    <Label text="Transfer Fee" col="0" />
+                    <Label text="{{ transferFeeDisplay }}" col="1" />
+                </GridLayout>
+                <GridLayout columns="*, auto" class="mb-2">
+                    <Label text="Total Amount" col="0" class="font-bold" />
+                    <Label text="{{ totalAmountDisplay }}" col="1" class="font-bold" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Action Buttons -->
+            <Button text="Continue" 
+                    tap="{{ onContinue }}" 
+                    class="btn-primary p-4 rounded-lg" 
+                    isEnabled="{{ isValid }}" />
+        </StackLayout>
+    </ScrollView>
+</Page>

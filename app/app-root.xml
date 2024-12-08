@@ -1,0 +1,5 @@
+<Frame defaultPage="pages/auth/login-page">
+  <Frame.actionBar>
+    <ActionBar title="AfriConnect" icon="" />
+  </Frame.actionBar>
+</Frame>
